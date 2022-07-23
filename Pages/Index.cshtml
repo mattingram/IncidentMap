@@ -4,6 +4,9 @@
     ViewData["Title"] = "Incident Map";
 }
 
-<div class="text-center">
+<div id="map"></div>
 
-</div>
+@section Scripts
+{
+    <script src="@Model.GoogleMapsApiUrl" defer></script>
+}
