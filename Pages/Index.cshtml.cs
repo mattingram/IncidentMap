@@ -8,7 +8,7 @@ public class IndexModel : PageModel
     private readonly ILogger<IndexModel> _logger;
     private readonly IConfiguration Configuration;
     private readonly string GoogleMapsApiKey = "";
-    public string GoogleMapsApiUrl => $"https://maps.googleapis.com/maps/api/js?key={GoogleMapsApiKey}&callback=initMap&v=weekly";
+    public string GoogleMapsApiUrl => $"https://maps.googleapis.com/maps/api/js?key={GoogleMapsApiKey}&callback=initMap";
 
     public IndexModel(ILogger<IndexModel> logger, IConfiguration configuration)
     {
