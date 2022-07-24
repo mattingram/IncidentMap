@@ -10,18 +10,19 @@
     
     var d;
 
-    await $.get("/Incident")
+    await $.get("/Map")
       .done(function (data) {
         d = data;
       })
       .fail(function() {alert("Error loading incident data;")});
 
-    console.log(d.address.lat);
+    var i = d.incident;
+    console.log(i.address.lat);
 
     const place1 = {
-      name: d.fireDepartment,
-      location: { lat: d.address.lat, lng: d.address.lng },
-      details1: d.eventDate
+      name: i.fireDepartment,
+      location: { lat: i.address.lat, lng: i.address.lng },
+      details1: i.eventDate
     }
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 11,

@@ -9,20 +9,24 @@ namespace IncidentMap.Services
         {
             _configuration = configuration;
         }
-        public int GetWeatherCode(Location location, DateTime dateTime)
+        public Weather GetWeather(Location location, DateTime dateTime)
         {
             string weatherApiKey = _configuration["WeatherApiKey"];
             if (string.IsNullOrEmpty(weatherApiKey))
             {
                 throw new Exception("WeatherApiKey is not configured. Please set the configuration key in the appsettings.json file.");
             }
-            string date = dateTime.ToString("YYYY-MM-DD");
+            string date = dateTime.ToString("yyyy-MM-dd");
+            string dateAndHour = dateTime.ToString("yyyy-MM-dd HH:00:00");
+            string url = $"https://meteostat.p.rapidapi.com/point/hourly?lat={location.Lat}&lon={location.Lng}&start={date}&end={date}&tz=America%2FToronto&units=imperial";
+            
+            Weather weather = new Weather();
 
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"https://meteostat.p.rapidapi.com/point/hourly?lat={location.Lat}&lon={location.Lng}&start={date}&end={date}&tz=America%2FToronto"),
+                RequestUri = new Uri(url),
                 Headers =
                 {
                     { "X-RapidAPI-Key", weatherApiKey },
@@ -32,13 +36,28 @@ namespace IncidentMap.Services
             using (var response = client.SendAsync(request).Result)
             {
                 response.EnsureSuccessStatusCode();
-                var body = response.Content.ReadFromJsonAsync<dynamic>().Result;
-                if (body.data && body.data[dateTime.Hour])
+                var body = response.Content.ReadAsStringAsync().Result;
+                var json = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(body);
+                if (json.data != null)
                 {
-                    return body.data[dateTime.Hour].coco;
+                    foreach(var d in json.data)
+                    {
+                        if (d.time == dateAndHour)
+                        {
+                            weather.Temp = d.temp;
+                            weather.Precip = d.prcp;
+                            if (d.coco != null)
+                            {
+                                if (int.TryParse(d.coco, out int coco))
+                                {
+                                    weather.WeatherCode = coco;
+                                }
+                            }
+                        }
+                    }
                 }
             }
-            return -1;
+            return weather;
         }
     }
 }

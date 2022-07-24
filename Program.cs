@@ -7,6 +7,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 builder.Services.AddSingleton<IIncidentService, IncidentService>();
 builder.Services.AddSingleton<IWeatherService, WeatherService>();
+builder.Services.AddSingleton<IMapService, MapService>();
 
 var app = builder.Build();
 
