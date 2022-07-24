@@ -23,7 +23,9 @@ namespace IncidentMap.Models
 
     public class Incident
     {
-        public Location Address { get; set; }
+        public Location Location { get; set; }
+        public string Address {get; set;}
+        public string Description { get; set; }
         public IEnumerable<Apparatus> Apparatus { get; set; }
         public DateTime? EventDate { get; set; }
         public string FireDepartment { get; set; }

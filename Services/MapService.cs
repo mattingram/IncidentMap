@@ -27,7 +27,7 @@ namespace IncidentMap.Services
             var mapData = new MapData();
             mapData.Incident = incident;
 
-            mapData.Weather = _weatherService.GetWeather(incident.Address, incident.EventDate.GetValueOrDefault());
+            mapData.Weather = _weatherService.GetWeather(incident.Location, incident.EventDate.GetValueOrDefault());
             
             return mapData;
         }

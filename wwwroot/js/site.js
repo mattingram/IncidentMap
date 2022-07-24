@@ -20,10 +20,11 @@
     var w = d.weather;
 
     const place1 = {
-      name: i.fireDepartment,
-      location: { lat: i.address.lat, lng: i.address.lng },
-      details1: i.eventDate,
-      details2: w.temp
+      name: i.address,
+      location: { lat: i.location.lat, lng: i.location.lng },
+      details1: `Event Time: ${i.eventDate}`,
+      details2: `Temperature: ${w.temp}`,
+      details3: i.description
     }
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 11,
@@ -38,15 +39,18 @@
 
     google.maps.event.addListener(marker1, "click", function () {
       var content = document.createElement("div");
-      var nameElement = document.createElement("h2");
-      nameElement.textContent = place1.name;
-      content.appendChild(nameElement);
-      var placeIdElement = document.createElement("p");
-      placeIdElement.textContent = place1.details1;
-      content.appendChild(placeIdElement);
-      var placeAddressElement = document.createElement("p");
-      placeAddressElement.textContent = `Temperature: ${place1.details2}`;
-      content.appendChild(placeAddressElement);
+      var header = document.createElement("h3");
+      header.textContent = place1.name;
+      content.appendChild(header);
+      var p1 = document.createElement("p");
+      p1.textContent = place1.details1;
+      content.appendChild(p1);
+      var p2 = document.createElement("p");
+      p2.textContent = place1.details2;
+      content.appendChild(p2);
+      var p3 = document.createElement("p");
+      p3.textContent = place1.details3;
+      content.appendChild(p3);
       infowindow.setContent(content);
       infowindow.open(map, marker1);
   });

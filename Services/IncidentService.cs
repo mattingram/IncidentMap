@@ -13,9 +13,11 @@ namespace IncidentMap.Services
                 return new Incident();
             }
             var incident = new Incident();
-            incident.Address = new Location {Lat = json.address.latitude, Lng = json.address.longitude};
+            incident.Location = new Location {Lat = json.address.latitude, Lng = json.address.longitude};
+            incident.Address = json.address.address_line1;
             incident.FireDepartment = json.fire_department.name;
             incident.EventDate = json.description.event_opened;
+            incident.Description = json.description.comments;
             // incident.Apparatus = new List<Apparatus>();
             // foreach(var apparatus in json.apparatus)
             // {
