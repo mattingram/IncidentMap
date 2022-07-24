@@ -14,6 +14,8 @@
 1. Configure path to InputFile in appsettings.json
 1. In a terminal window: `dotnet run`
 
+![Map output](/Map.png)
+
 ## Future Enhancements
 
 I spent about 8 hours on this sample project. Using .NET to parse JSON felt very tedious and clunky. I think a better language would be Python or Node.js.
