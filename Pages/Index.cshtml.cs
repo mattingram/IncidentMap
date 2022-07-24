@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace IncidentMap.Pages;
 
@@ -15,6 +14,7 @@ public class IndexModel : PageModel
         _logger = logger;
         Configuration = configuration;
         GoogleMapsApiKey = Configuration["GoogleMapsApiKey"];
+        
         if (string.IsNullOrEmpty(GoogleMapsApiKey))
         {
             throw new Exception("Google Maps API key is not configured. Please set the GoogleMapsApiKey configuration key in the appsettings.json file or add as a command line argument.");
@@ -23,6 +23,6 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-
+        
     }
 }
