@@ -17,12 +17,13 @@
       .fail(function() {alert("Error loading incident data;")});
 
     var i = d.incident;
-    console.log(i.address.lat);
+    var w = d.weather;
 
     const place1 = {
       name: i.fireDepartment,
       location: { lat: i.address.lat, lng: i.address.lng },
-      details1: i.eventDate
+      details1: i.eventDate,
+      details2: w.temp
     }
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 11,
@@ -44,7 +45,7 @@
       placeIdElement.textContent = place1.details1;
       content.appendChild(placeIdElement);
       var placeAddressElement = document.createElement("p");
-      placeAddressElement.textContent = place1.details2;
+      placeAddressElement.textContent = `Temperature: ${place1.details2}`;
       content.appendChild(placeAddressElement);
       infowindow.setContent(content);
       infowindow.open(map, marker1);
