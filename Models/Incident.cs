@@ -10,7 +10,7 @@ namespace IncidentMap.Models
     {
         public string StatusType { get; set; }
         public Location Location { get; set; }
-        public DateTime Time { get; set; }
+        public DateTime? Time { get; set; }
     }
 
     public class Apparatus
@@ -25,7 +25,7 @@ namespace IncidentMap.Models
     {
         public Location Address { get; set; }
         public IEnumerable<Apparatus> Apparatus { get; set; }
-        public DateTime EventDate { get; set; }
+        public DateTime? EventDate { get; set; }
         public string FireDepartment { get; set; }
     }
 }
