@@ -3,7 +3,7 @@ namespace IncidentMap.Models
     public class Location
     {
         public double Lat { get; set; }
-        public double Lon { get; set; }
+        public double Lng { get; set; }
     }
 
     public class UnitStatus

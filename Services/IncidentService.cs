@@ -9,7 +9,9 @@ namespace IncidentMap.Services
             string jsonString = File.ReadAllText(filePath);
             dynamic json = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonString);
             var incident = new Incident();
-            incident.Address = new Location {Lat = json.address.latitude, Lon = json.address.longitude};
+            incident.Address = new Location {Lat = json.address.latitude, Lng = json.address.longitude};
+            incident.FireDepartment = json.fire_department.name;
+            incident.EventDate = json.description.event_opened;
 
             return incident;            
         }

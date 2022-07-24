@@ -1,18 +1,30 @@
 ﻿
+
 /**
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
- function initMap() {
+
+ async function initMap() {
+    
+    var d;
+
+    await $.get("/Incident")
+      .done(function (data) {
+        d = data;
+      })
+      .fail(function() {alert("Error loading incident data;")});
+
+    console.log(d.address.lat);
+
     const place1 = {
-      name: "FD 1",
-      location: { lat: -25.363, lng: 131.044 },
-      details1: "some details",
-      details2: "more"
+      name: d.fireDepartment,
+      location: { lat: d.address.lat, lng: d.address.lng },
+      details1: d.eventDate
     }
     const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
+      zoom: 11,
       center: place1.location,
     });
   
