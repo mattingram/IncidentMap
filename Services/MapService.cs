@@ -1,4 +1,5 @@
-using IncidentMap.Models;
+using IncidentMap.Services.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace IncidentMap.Services
 {

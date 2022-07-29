@@ -1,4 +1,4 @@
-using IncidentMap.Models;
+using IncidentMap.Services.Models;
 
 namespace IncidentMap.Services
 {

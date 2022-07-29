@@ -1,4 +1,4 @@
-namespace IncidentMap.Models
+namespace IncidentMap.Services.Models
 {
     public class Location
     {
