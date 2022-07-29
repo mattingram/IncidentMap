@@ -2,8 +2,12 @@ namespace IncidentMap.Services.Models
 {
     public class Weather
     {
-        public double Temp {get; set;}
-        public double Precip {get; set;}
-        public int WeatherCode {get; set;}
+        public TempData[] Data { get; set; }
+
+        public class TempData {
+            public double Temp {get; set;}
+            public double Prcp {get; set;}
+            public int Coco {get; set;}
+        }        
     }
 }
